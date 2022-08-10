@@ -14,7 +14,6 @@ export class CdkStack extends cdk.Stack {
         input: CodePipelineSource.gitHub('sashinshin/cdk-react', 'main'),
         commands: [
           'npm ci',
-          'cd react && npm i && cd ..',
           'npm run build',
           'npx cdk synth',
         ],
