@@ -1,6 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
+import { addStaticPageBucket } from './s3resources';
+
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CdkStack extends cdk.Stack {
@@ -14,10 +16,15 @@ export class CdkStack extends cdk.Stack {
         input: CodePipelineSource.gitHub('sashinshin/cdk-react', 'main'),
         commands: [
           'npm ci',
+          'cd react && npm install && npm run build  && cd ..',
           'npm run build',
           'npx cdk synth',
         ],
       }),
     });
+
+    addStaticPageBucket(this);
+
+
   }
 }
