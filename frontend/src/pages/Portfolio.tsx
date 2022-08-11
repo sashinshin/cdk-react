@@ -16,7 +16,7 @@ const Portfolio = () => (
     <Navbar />
     <main>
       <PortfolioItem
-        item={dreamStream}
+        items={dreamStream}
       />
 
     </main>
